@@ -1,0 +1,37 @@
+.main-container {
+    /* outline: 2px solid red; */
+}
+
+.record-info {
+    /* outline: 2px solid red; */
+    width: 500px
+}
+
+.action-wrapper {
+    /* outline: 2px solid blue; */
+    width: 150px;
+}
+
+.list-wrapper {
+    /* outline: 2px solid red; */
+    width: 800px
+}
+
+.record-name {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.record-date {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.record-cost {
+    font-size: 50px;
+}
+
+.new-record-wrapper {
+    /* outline: 1px solid red; */
+    width: 800px;
+}

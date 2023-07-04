@@ -5,6 +5,8 @@ const methodOverride = require('method-override')
 const app = express()
 const port = process.env.PORT || 3000
 
+require('dotenv').config
+
 app.engine('hbs', exphbs.engine(
     {
         defaultLayout: 'main',
@@ -18,6 +20,14 @@ app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
     res.render('index')
+})
+
+app.get('/record/new', (req, res) => {
+    res.render('new')
+})
+
+app.get('/record/edit', (req, res) => {
+    res.render('edit')
 })
 
 app.listen(port, () => {
