@@ -22,13 +22,13 @@
         <nav class="navbar navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    家庭記帳本
+                    {{#if isAuthenticated}} {{user.name}} {{/if}}家庭記帳本
                 </a>
 
                 {{#if isAuthenticated}}
-                <a class="btn btn-danger" href="/users/logout">Logout</a>
+                <a class="btn btn-outline-danger" href="/users/logout">Logout</a>
                 {{else}}
-                <a class="btn btn-light" href="/users/login">Login</a>
+                <a class="btn btn-outline-light" href="/users/login">Login</a>
                 {{/if}}
             </div>
         </nav>

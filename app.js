@@ -1,26 +1,39 @@
 const express = require('express')
+const session = require('express-session')
+const usePassport = require('./config/passport')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 const helpers = require('./helper/exphbs-helper')
-
+require('dotenv').config
 require('./config/mongoose')
 
 const app = express()
 const port = process.env.PORT || 3000
-
-require('dotenv').config
 
 app.engine('hbs', exphbs.engine({
     defaultLayout: 'main',
     extname: 'hbs',
     helpers
 }))
-
 app.set('view engine', 'hbs')
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+}))
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+usePassport(app)
+
+// add middleware for authenticate
+app.use((req,res,next)=>{
+    res.locals.isAuthenticated = req.isAuthenticated(),
+    res.locals.user = req.user
+    next()
+})
 
 app.use(routes)
 
