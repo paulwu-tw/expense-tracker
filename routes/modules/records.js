@@ -10,7 +10,9 @@ router.get('/create', (req, res) => {
 })
 
 router.post('/create', (req, res) => {
+    const userId = req.user._id
     const record = req.body
+    record.userId = userId
     Category.findOne({ name: record.category }).lean()
         .then((category) => {
             record.categoryId = category._id

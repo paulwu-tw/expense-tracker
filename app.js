@@ -3,6 +3,7 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const routes = require('./routes')
 const helpers = require('./helper/exphbs-helper')
 require('dotenv').config
@@ -26,12 +27,15 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+app.use(flash())
 usePassport(app)
 
 // add middleware for authenticate
 app.use((req,res,next)=>{
     res.locals.isAuthenticated = req.isAuthenticated(),
     res.locals.user = req.user
+    res.locals.successMsg = req.flash('successMsg')
+    res.locals.warningMsg = req.flash('warningMsg')
     next()
 })
 
