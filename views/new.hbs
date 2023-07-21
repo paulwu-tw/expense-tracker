@@ -1,6 +1,6 @@
 <div class="mt-5 d-flex justify-content-center">
     <form action="/records/create" method="POST" class="new-record-wrapper">
-    {{> message}}
+        {{> message}}
         <div class="row mb-5">
             <label for="name" class="col-sm-2 col-form-label">*必填欄位:</label>
             <div class="col-sm-10">
@@ -24,11 +24,9 @@
             <div class="col-sm-10">
                 <select class="form-select" aria-label="Sort" name="category" required>
                     <option value="" disabled selected>請選擇類別</option>
-                    <option value="家居物業" {{checkSelectValue record.category "家居物業" }}>家居物業</option>
-                    <option value="交通出行" {{checkSelectValue record.category "交通出行" }}>交通出行</option>
-                    <option value="休閒娛樂" {{checkSelectValue record.category "休閒娛樂" }}>休閒娛樂</option>
-                    <option value="餐飲食品" {{checkSelectValue record.category "餐飲食品" }}>餐飲食品</option>
-                    <option value="其他" {{checkSelectValue record.category "其他" }}>其他</option>
+                    {{#each categories}}
+                    <option value="{{this.name_en}}">{{this.name}}</option>
+                    {{/each}}
                 </select>
             </div>
         </div>

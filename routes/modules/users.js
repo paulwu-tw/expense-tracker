@@ -14,7 +14,7 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true
 }))
 
-router.get('/register', (req, res) => {
+router.get('/register', async (req, res) => {
   res.render('register')
 })
 
@@ -28,9 +28,9 @@ router.post('/register', (req, res) => {
 
   User.findOne({ email }).lean()
     .then((user) => {
+      console.log("here")
       if (user) {
         errors.push({ msg: 'This email already exists.' })
-        // req.flash('warningMsg', 'This email already exists.')
         return res.render('register', { errors, name, email, password, confirmPassword })
       }
 
@@ -48,10 +48,11 @@ router.post('/register', (req, res) => {
     .catch((err) => console.log(err))
 })
 
-router.get('/logout', (req, res, next) => {
+router.get('/logout', async (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err)
 
+    req.flash('successMsg', 'You have successfully logged out.')
     res.redirect('/users/login')
   })
 })

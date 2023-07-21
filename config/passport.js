@@ -9,7 +9,7 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // conifg passport-local stategy
+  // conifg passport-local strategy
   passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then((user) => {
@@ -23,6 +23,8 @@ module.exports = app => {
       })
       .catch((err) => done(err, false))
   }))
+
+  // config passport-facebook strategy
 
   // serialize and deserialize user
   passport.serializeUser((user, done) => {

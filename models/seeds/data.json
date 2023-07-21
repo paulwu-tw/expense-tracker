@@ -1,0 +1,48 @@
+{
+    "data": {
+        "SEED_USERS": [
+            {
+                "name": "user1",
+                "email": "user1@gmail.com",
+                "password": "1111"
+            },
+            {
+                "name": "user2",
+                "email": "user2@gmail.com",
+                "password": "1111"
+            }
+        ],
+        "SEED_RECORDS": [
+            {
+              "name": "午餐",
+              "amount": "60",
+              "date": "2019-04-23",
+              "category": "food"
+            },
+            {
+              "name": "晚餐",
+              "amount": "60",
+              "date": "2019-04-23",
+              "category": "food"
+            },
+            {
+              "name": "捷運",
+              "amount": "120",
+              "date": "2019-04-23",
+              "category": "traffic"
+            },
+            {
+              "name": "電影:驚奇隊長",
+              "amount": "60",
+              "date": "2019-04-23",
+              "category": "entertainment"
+            },
+            {
+              "name": "租金",
+              "amount": "25000",
+              "date": "2019-04-01",
+              "category": "house"
+            }
+        ]
+    }
+}

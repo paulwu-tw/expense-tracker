@@ -2,13 +2,14 @@
 <div class="d-flex flex-column align-items-center">
   <form action="/filter">
     <div class="mt-5">
-      <select class="form-select" aria-label="Category" name="category" style="width: 300px;" onchange="this.form.submit()">
+
+      <select class="form-select" aria-label="Category" name="category" style="width: 300px;"
+        onchange="this.form.submit()">
         <option value="" disabled selected>類別</option>
-        <option value="家居物業" {{checkSelectValue category "家居物業" }}>家居物業</option>
-        <option value="交通出行" {{checkSelectValue category "交通出行" }}>交通出行</option>
-        <option value="休閒娛樂" {{checkSelectValue category "休閒娛樂" }}>休閒娛樂</option>
-        <option value="餐飲食品" {{checkSelectValue category "餐飲食品" }}>餐飲食品</option>
-        <option value="其他" {{checkSelectValue category "其他" }}>其他</option>
+        <option value="all" {{checkSelectValue category "all" }}>全部</option>
+        {{#each categories}}
+        <option value="{{this.name_en}}" {{checkSelectValue ../category this.name_en }}>{{this.name}}</option>
+        {{/each}}
       </select>
     </div>
     <div class="mt-3">
