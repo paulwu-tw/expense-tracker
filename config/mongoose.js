@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 // check env
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   require('dotenv').config()
+// }
 
 const user = process.env.MONGODB_USER
 const password = process.env.MONGODB_PASSWORD

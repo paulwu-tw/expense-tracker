@@ -7,7 +7,9 @@ const flash = require('connect-flash')
 const routes = require('./routes')
 const helpers = require('./plugins/exphbs-helper')
 
-require('dotenv').config
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 require('./config/mongoose')
 
 const app = express()
