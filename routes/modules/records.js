@@ -4,9 +4,8 @@ const Record = require('../../models/records')
 const Category = require('../../models/category')
 const validator = require('../../plugins/validate')
 
-
-let categories;
-async function getCategories() {
+let categories
+async function getCategories () {
   const categoryFind = await Category.find().lean()
   categories = categoryFind
 }
@@ -19,7 +18,6 @@ router.get('/create', async (req, res) => {
   } catch (err) {
     console.error(err)
   }
-
 })
 
 router.post('/create', async (req, res) => {
@@ -40,7 +38,6 @@ router.post('/create', async (req, res) => {
   } catch (err) {
     console.error(err)
   }
-
 })
 
 router.get('/:id/edit', async (req, res) => {
@@ -50,18 +47,17 @@ router.get('/:id/edit', async (req, res) => {
     const record = await Record.findOne({ _id: id }).populate('categoryId').lean()
     record.date = record.date.toISOString().split('T')[0]
 
-    res.render('edit', { record, categories, category: record.categoryId.name_en})
+    res.render('edit', { record, categories, category: record.categoryId.name_en })
   } catch (err) {
     console.error(err)
   }
-
 })
 
 router.put('/:id', async (req, res) => {
   const record = req.body
   const id = req.params.id
-  
-  // validate input data 
+
+  // validate input data
   const errors = validator.recodrValidate(record)
   if (errors.length) return res.render('new', { errors, record })
 
@@ -73,7 +69,6 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     console.error(err)
   }
-
 })
 
 router.delete('/:id', async (req, res) => {
@@ -84,7 +79,6 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     console.error(err)
   }
-
 })
 
 module.exports = router

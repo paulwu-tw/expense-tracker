@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
 
   User.findOne({ email }).lean()
     .then((user) => {
-      console.log("here")
+      console.log('here')
       if (user) {
         errors.push({ msg: 'This email already exists.' })
         return res.render('register', { errors, name, email, password, confirmPassword })
