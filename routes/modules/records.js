@@ -26,8 +26,8 @@ router.post('/create', async (req, res) => {
   record.userId = userId
 
   // validate input data
-  const errors = validator.recodrValidate(record)
-  if (errors.length) return res.render('new', { errors, record })
+  const errors = validator.recordValidate(record)
+  if (errors.length) return res.render('new', { errors, record, categories })
 
   try {
     const category = await Category.findOne({ name_en: record.category }).lean()
@@ -57,9 +57,11 @@ router.put('/:id', async (req, res) => {
   const record = req.body
   const id = req.params.id
 
+  // store id to record for if errors happen re-render to the page
+  record._id = id
   // validate input data
-  const errors = validator.recodrValidate(record)
-  if (errors.length) return res.render('new', { errors, record })
+  const errors = validator.recordValidate(record)
+  if (errors.length) return res.render('edit', { errors, record, categories, category: record.category })
 
   try {
     const category = await Category.findOne({ name_en: record.category }).lean()
