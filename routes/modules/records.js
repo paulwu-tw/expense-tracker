@@ -24,10 +24,13 @@ router.post('/create', async (req, res) => {
   const userId = req.user._id
   const record = req.body
   record.userId = userId
-
+  
+  // turn aomunt to number type, beacause input value is string.
+  record.amount = Number(record.amount)
+  
   // validate input data
   const errors = validator.recordValidate(record)
-  if (errors.length) return res.render('new', { errors, record, categories })
+  if (errors.length) return res.render('new', { errors, record, categories, category: record.category })
 
   try {
     const category = await Category.findOne({ name_en: record.category }).lean()
@@ -59,6 +62,7 @@ router.put('/:id', async (req, res) => {
 
   // store id to record for if errors happen re-render to the page
   record._id = id
+  record.amount = Number(record.amount)
   // validate input data
   const errors = validator.recordValidate(record)
   if (errors.length) return res.render('edit', { errors, record, categories, category: record.category })
